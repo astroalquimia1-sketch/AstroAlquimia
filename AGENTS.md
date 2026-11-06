@@ -7,8 +7,12 @@ A single self-contained static page: `astroalquimia_x5f_maqueta_x5f_portfolio_x5
 Tailwind CSS are inlined in one `<script type="module">` / `<style>`; there is no
 `package.json`, no bundler, no backend, no database and no external credentials.
 
-**This HTML file is the source.** Edit it directly — the JSX is already compiled, so
-changes are made in the compiled `x("div", { className: ... })` call style, not JSX.
+**This HTML file is the source.** The app is editable JSX: a `<script type="text/babel">`
+block near the end of the file holds the `App` component as hand-written JSX, compiled in
+the browser by Babel standalone (no build step). React/ReactDOM load from CDN (UMD globals).
+The big `<style>` block is the precompiled Tailwind CSS — it already contains every utility
+class the JSX uses, so editing text/content "just works". Adding brand-new Tailwind utility
+classes won't get CSS unless you also add it to the `<style>` block (there is no JIT here).
 
 ## Running it (Base44 sandbox)
 
